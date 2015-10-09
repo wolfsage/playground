@@ -4,7 +4,7 @@ use warnings;
 use charnames ':full';
 
 my $name = 'emoji.pl';
-our $VERSION = '0.1';
+my $VERSION = '0.1';
 
 # Adapted from rjbs' irssi script:
 #
