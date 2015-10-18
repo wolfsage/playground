@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use charnames ':full';
+use Text::SlackEmoji;
 
 my $name = 'emoji.pl';
 my $VERSION = '0.1';
@@ -13,16 +13,6 @@ my $VERSION = '0.1';
 # Changes incoming slack emoji names to unicode, (:+1:, :smile:, etc...)
 #
 # Your server name must have the string 'slack' in it to work!
-
-my %emoji = (
-  'imp'   => "\N{IMP}",
-  'heart' => "\N{BLUE HEART}", # Pobox, yo.
-  'poop'  => "\N{PILE OF POO}",
-  'smile' => "\N{SMILING FACE WITH OPEN MOUTH AND SMILING EYES}",
-  '+1'    => "\N{THUMBS UP SIGN}",
-  '-1'    => "\N{THUMBS DOWN SIGN}",
-  'snowman' => "\N{SNOWMAN}",
-);
 
 weechat::register(
   $name,
@@ -44,6 +34,7 @@ sub change_emoji {
   return munge_emoji($string);
 }
 
+my %emoji = %{Text::SlackEmoji->emoji_map};
 sub munge_emoji {
   my ($target, $text) = split / :/, $_[0], 2;
   $text =~ s!:([-+a-z0-9_]+):!$emoji{$1} // ":$1:"!ge;
