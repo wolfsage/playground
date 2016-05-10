@@ -1,9 +1,0 @@
-I've included gen.pl to write new pkt.pkt files, but I've also included a 
-sample pkt.pkt file which contains the binary data of a single RNDC packet.
-
-To play:
-
-$ go build
-$ ./rndc
-
-
